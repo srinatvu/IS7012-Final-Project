@@ -1,0 +1,60 @@
+﻿@page
+@model Project.Pages.CheckoutHistorys.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Book checkout management</h1>
+
+<p>
+    <a asp-page="Create">Checkout a book</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckoutHistory[0].BorrowDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckoutHistory[0].ReturnDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckoutHistory[0].Book)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckoutHistory[0].Member)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckoutHistory[0].Staff)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.CheckoutHistory) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BorrowDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReturnDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Book.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Member.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Staff.Id)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
